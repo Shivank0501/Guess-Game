@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <style>
+        body{
+        background-color:#FAF0D7;
+        }
+
+        .div{
+        color:#4E4FEB;
+        border-radius: 5px;
+        padding: 20px;
+        }
+
+        input[type=number], select {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 39px;
+          box-sizing: border-box;
+        }
+
+        button[type=submit] {
+          width: 100%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 30px;
+          cursor: pointer;
+        }
+        button[type=submit]:hover {
+          background-color: #45a049;
+        }
+
+        button[type=button] {
+          width: 100%;
+          background-color: #4A55A2;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 30px;
+          cursor: pointer;
+        }
+        button[type=button]:hover {
+          background-color: #4A55A2;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 style="color:#1B6B93; text-align:center;"> Welcome to the Guess Game</h2>
+</div>
+
+
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="number" name="guess" placeholder="Enter your guess" required>
+        <button type="submit">Guess</button>
+
+         {% if show_answer %}
+            <button type="button" onclick="showAnswer()">Show Answer</button>
+        <p id="answer" style="display: none; color:#862B0D; text-align: center;"><strong>The answer is {{ answer }}</strong></p>
+        {% endif %}
+    </form>
+
+    <script>
+        function showAnswer() {
+            document.getElementById("answer").style.display = "block";
+        }
+    </script>
+
+
+
+
+
+</body>
+</html>
